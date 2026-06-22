@@ -9,20 +9,20 @@ public class RegistrationTests extends TestBase {
     void successfulFillFormTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Timur");
-        $("[id=lastName]").setValue("Nikitin");
-        $("[id=userEmail]").setValue("9509407766@gmail.com");
-        $("[id=userNumber]").setValue("9509407766");
+        $("#firstName").setValue("Timur");
+        $("#lastName").setValue("Nikitin");
+        $("#userEmail").setValue("9509407766@gmail.com");
+        $("#userNumber").setValue("9509407766");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id=dateOfBirthInput]").click();
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").selectOption("2007");
         $(".react-datepicker__day--013:not(.react-datepicker__day--outside-month)").click();
-        $("[id=subjectsInput]").setValue("play games");
+        $("#subjectsInput").setValue("Maths");
         $(".subjects-auto-complete__option").click();
-        $("#hobbiesWrapper").$$("label").findBy(text("Sports")).click();
-        $("#hobbiesWrapper").$$("label").findBy(text("Music")).click();
-        $("[id=uploadPicture]").uploadFromClasspath("image_3.png");
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
+        $("#uploadPicture").uploadFromClasspath("image_3.png");
         $("#currentAddress").setValue("77 Zorge Street");
 
         $("#state").click();
@@ -31,14 +31,14 @@ public class RegistrationTests extends TestBase {
         $("#city").click();
         $$("[id^=react-select-4-option]").findBy(text("Karnal")).click();
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         $(".table-responsive").shouldHave(text("Timur Nikitin"));
         $(".table-responsive").shouldHave(text("9509407766@gmail.com"));
         $(".table-responsive").shouldHave(text("9509407766"));
         $(".table-responsive").shouldHave(text("Male"));
         $(".table-responsive").shouldHave(text("13 June,2007"));
-        $(".table-responsive").shouldHave(text("play games"));
+        $(".table-responsive").shouldHave(text("Maths"));
         $(".table-responsive").shouldHave(text("Haryana"));
         $(".table-responsive").shouldHave(text("Karnal"));
         $(".table-responsive").shouldHave(text("Sports"));
@@ -51,12 +51,12 @@ public class RegistrationTests extends TestBase {
     void successfulFillRequiredFormTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Timur");
-        $("[id=lastName]").setValue("Nikitin");
-        $("[id=userNumber]").setValue("9509407766");
+        $("#firstName").setValue("Timur");
+        $("#lastName").setValue("Nikitin");
+        $("#userNumber").setValue("9509407766");
         $("#genterWrapper").$$("label").findBy(text("Male")).click();
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         $(".table-responsive").shouldHave(text("Timur Nikitin"));
         $(".table-responsive").shouldHave(text("9509407766"));
@@ -67,7 +67,7 @@ public class RegistrationTests extends TestBase {
     void unsuccessfulEmptyFormTest() {
         open("/automation-practice-form");
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         $(".modal-body").shouldNot(exist);
     }
@@ -76,11 +76,11 @@ public class RegistrationTests extends TestBase {
     void unsuccessfulEmptyFirstNameTest() {
         open("/automation-practice-form");
 
-        $("[id=lastName]").setValue("Nikitin");
-        $("[id=userNumber]").setValue("9509407766");
+        $("#lastName").setValue("Nikitin");
+        $("#userNumber").setValue("9509407766");
         $("#genterWrapper").$(byText("Male")).click();
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         $(".modal-body").shouldNot(exist);
     }
@@ -89,13 +89,13 @@ public class RegistrationTests extends TestBase {
     void unsuccessfulInvalidEmailTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Timur");
-        $("[id=lastName]").setValue("Nikitin");
-        $("[id=userNumber]").setValue("9509407766");
+        $("#firstName").setValue("Timur");
+        $("#lastName").setValue("Nikitin");
+        $("#userNumber").setValue("9509407766");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userEmail]").setValue("mail.rу");
+        $("#userEmail").setValue("mail.rу");
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         $(".modal-body").shouldNot(exist);
     }
